@@ -1,5 +1,7 @@
 package com.attrecto.academy.java.courseapp.rest;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,7 +39,7 @@ public class AccountController {
     @PostMapping(value= "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Create a login token")
-	public String login(@RequestBody LoginDto loginDto) {
+	public String login(@RequestBody @Valid LoginDto loginDto) {
 		return accountService.generateJwtToken(loginDto);
 	}
 }
