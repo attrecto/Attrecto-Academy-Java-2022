@@ -3,6 +3,7 @@ package com.attrecto.academy.java.courseapp.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import com.attrecto.academy.java.courseapp.mapper.CourseMapper;
@@ -22,15 +23,18 @@ public class CourseService {
 		this.serviceUtil = serviceUtil;
 	}
 
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
 	public List<CourseDto> listAllCourses() {
 		List<Course> courses = courseRepository.findAll();
 		return courses.stream().map(CourseMapper::map).collect(Collectors.toList());
 	}
 
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
 	public CourseDto getCourseById(int id) {
 		return CourseMapper.map(serviceUtil.findCourseById(id));
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public CourseDto createCourse(CreateCourseDto createCourseDto) {
 		final Course course = new Course();
 		course.setTitle(createCourseDto.getTitle());
@@ -43,6 +47,7 @@ public class CourseService {
 		return CourseMapper.map(courseRepository.save(course));
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public CourseDto updateCourse(final int id, CreateCourseDto updateCourseDto) {
 		Course course = serviceUtil.findCourseById(id);
 		course.setDescription(updateCourseDto.getDescription());
@@ -55,6 +60,7 @@ public class CourseService {
 		return CourseMapper.map(courseRepository.save(course));
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void deleteCourse(int id) {
 		serviceUtil.findCourseById(id);
 
