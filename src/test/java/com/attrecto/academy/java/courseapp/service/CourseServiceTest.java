@@ -76,14 +76,14 @@ public class CourseServiceTest {
 		CourseDto secondCourse = courses.get(1);
 		
 		assertEquals(firstCourse.getId(), firstTestCourse.getId());
-		assertEquals(firstCourse.getAuthorId(), firstTestCourse.getAuthor().getId());
+		assertEquals(firstCourse.getAuthor().getId(), firstTestCourse.getAuthor().getId());
 		assertEquals(firstCourse.getDescription(), firstTestCourse.getDescription());
 		assertEquals(firstCourse.getTitle(), firstTestCourse.getTitle());
 		assertEquals(firstCourse.getUrl(), firstTestCourse.getUrl());
 		assertEquals(firstCourse.getStudents().size(), 2);
 
 		assertEquals(secondCourse.getId(), secondTestCourse.getId());
-		assertEquals(secondCourse.getAuthorId(), secondTestCourse.getAuthor().getId());
+		assertEquals(secondCourse.getAuthor().getId(), secondTestCourse.getAuthor().getId());
 		assertEquals(secondCourse.getDescription(), secondTestCourse.getDescription());
 		assertEquals(secondCourse.getTitle(), secondTestCourse.getTitle());
 		assertEquals(secondCourse.getUrl(), secondTestCourse.getUrl());

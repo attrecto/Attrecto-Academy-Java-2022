@@ -24,7 +24,7 @@ public class CourseMapper {
 		courseDto.setDescription(course.getDescription());
 		courseDto.setTitle(course.getTitle());
 		courseDto.setUrl(course.getUrl());
-		courseDto.setAuthorId(course.getAuthor().getId());
+		courseDto.setAuthor(UserMapper.map(course.getAuthor()));
 		courseDto.setStudents(course.getStudents().stream().map(UserMapper::map).collect(Collectors.toSet()));
 		
 		return courseDto;
