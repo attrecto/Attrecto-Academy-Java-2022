@@ -3,19 +3,19 @@ package com.attrecto.academy.java.courseapp.model.dto;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema
 public class CreateCourseDto {
-	@Max(100)
+	@Size(min=4, max=100)
 	@NotBlank
 	@Schema(description = "Title of the course", example = "Java course")
 	private String title;
-	@Max(1000)
+	@Size(min=40, max=1000)
 	@NotBlank
 	@Schema(description = "Description of the course", example = "Java fundamentals and Spring Boot")	
 	private String description;
